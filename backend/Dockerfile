@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libglib2.0-0 libsm6 libxext6 libxrender-dev libgl1-mesa-glx \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev libgl1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Heavy, slow-changing layer first — kept isolated from requirements.txt
