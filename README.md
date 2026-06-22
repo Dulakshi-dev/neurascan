@@ -38,6 +38,8 @@ The backend loads the fine-tuned model weights directly from HuggingFace Hub (`i
 | Training platform | Google Colab (T4 GPU) |
 | Weights hosted | HuggingFace Hub (`iddc/neurascan-vit`) |
 
+**Training notebook:** [View on Google Colab](https://colab.research.google.com/drive/1g-wT8wE11qp7TDkgE7lezcuYiZOy9nmA?usp=sharing)
+
 The backbone was initialized from Google's ImageNet-21k pretrained ViT-Base checkpoint. The classification head was replaced with a 4-class linear layer and fine-tuned end-to-end. Images are preprocessed with standard ImageNet normalization (mean `[0.485, 0.456, 0.406]`, std `[0.229, 0.224, 0.225]`) and resized to 224×224.
 
 ---
