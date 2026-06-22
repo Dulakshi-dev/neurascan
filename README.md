@@ -147,6 +147,18 @@ neurascan/
 
 ---
 
+## Challenges & Notes
+
+**Transformers version mismatch** — the model silently loaded with random weights after a library upgrade renamed ViT's internal attention modules. Every parameter key mismatched, `strict=False` swallowed the errors, and predictions were wrong with no visible indication. Fixed by downgrading to the version used during training and switching to `from_pretrained()` to load architecture and weights as a matched unit.
+
+**Azure Static Web Apps unavailable** — Static Web Apps only deploys to five fixed regions, none of which overlap with this subscription's allowed regions. The frontend was instead containerized with nginx and deployed as a second Container App, matching the backend's deployment pattern.
+
+**Ingress port configuration** — Azure Container Apps requires the ingress target port and container health probe ports to match the application's actual listening port. Mismatches cause silent "Activation failed" errors with no clear log output. The nginx frontend listens on port 80; the FastAPI backend on port 7860.
+
+**Docker build context** — `.dockerignore` excludes `node_modules` to prevent locally-installed Windows binaries from overwriting the correct Linux versions built inside the container, a subtle source of runtime failures when building on Windows for Linux containers.
+
+---
+
 ## Disclaimer
 
 This tool is intended for research and educational purposes only. It is not a substitute for professional medical diagnosis. Always consult a qualified medical professional for any health concerns.
